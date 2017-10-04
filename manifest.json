@@ -1,0 +1,39 @@
+﻿{
+	"manifest_version": 2,
+	"name": "二维码助手",
+	"version": "1.0",
+
+	"description": "生成二维码",
+	"icons": { 
+		"16": "images/icon16_b.png",
+		"48": "images/icon48.png",
+		"128": "images/icon128.png" 
+	},
+
+	"author": "1011.0011@163.com",
+	"background": {
+		"scripts": ["eventPage.js"]
+	},
+	"page_action": {
+		"browser_style": true,
+		"default_icon": {
+			"16": "images/icon16.png",
+			"24": "images/icon24.png",
+			"32": "images/icon32.png"
+		},
+		"default_title": "二维码"
+	},
+	// "commands": {},
+	"homepage_url":"https://github.com/zhcong/firefox-qrcoder",
+	"minimum_chrome_version":"18",
+	"permissions" : [
+		"tabs",
+		"contextMenus",
+		"http://*/",
+		"https://*/",
+		"ftp://*/"
+	],
+	"web_accessible_resources": [
+		"images/close.svg"
+	]
+}
