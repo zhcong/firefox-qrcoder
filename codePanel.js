@@ -58,11 +58,11 @@ background_id.appendChild(qrcode_panel);
 document.body.appendChild(background_id);
 
 
-document.getElementById('qrcode_panel').style.left=(document.documentElement.clientWidth-300)/2+'px';
-document.getElementById('qrcode_panel').style.top=(document.documentElement.clientHeight-400)/3+'px';
+document.getElementById('qrcode_panel').style.left=(window.screen.availWidth-300)/2+'px';
+document.getElementById('qrcode_panel').style.top=(window.screen.availHeight-400)/3+'px';
 window.onresize = function(){
-	document.getElementById('qrcode_panel').style.left=(document.documentElement.clientWidth-300)/2+'px';
-	document.getElementById('qrcode_panel').style.top=(document.documentElement.clientHeight-400)/3+'px';
+	document.getElementById('qrcode_panel').style.left=(window.screen.availWidth-300)/2+'px';
+	document.getElementById('qrcode_panel').style.top=(window.screen.availHeight-400)/3+'px';
 }
 new QRCode('qrcode_image', {text: qr_text,width : 256,height : 256});
 

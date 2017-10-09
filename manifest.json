@@ -1,9 +1,9 @@
 ﻿{
 	"manifest_version": 2,
-	"name": "二维码助手",
-	"version": "1.0",
+	"name": "__MSG_name__",
+	"version": "1.2",
 
-	"description": "生成二维码",
+	"description": "__MSG_description__",
 	"icons": { 
 		"16": "images/icon16_b.png",
 		"48": "images/icon48.png",
@@ -21,9 +21,8 @@
 			"24": "images/icon24.png",
 			"32": "images/icon32.png"
 		},
-		"default_title": "二维码"
+		"default_title": "__MSG_alert__"
 	},
-	// "commands": {},
 	"homepage_url":"https://github.com/zhcong/firefox-qrcoder",
 	"minimum_chrome_version":"18",
 	"permissions" : [
@@ -35,5 +34,6 @@
 	],
 	"web_accessible_resources": [
 		"images/close.svg"
-	]
+	],
+	"default_locale": "zh_CN"
 }

@@ -1,0 +1,9 @@
+{
+	"menu_text":{"message":"生成选中文字的二维码","description": "menu_text"},
+	"menu_image":{"message":"生成图片地址的二维码","description": "menu_image"},
+	"menu_link":{"message":"生成选中链接的二维码","description": "menu_link"},
+	"menu_address":{"message":"生成页面地址的二维码","description": "menu_address"},
+	"name":{"message":"二维码助手","description": "Extension Name"},
+	"description": {"message":"生成页面地址、图片地址以及链接地址的二维码","description": "Extension description"},
+	"alert": {"message":"二维码","description": "Extension alert"}
+}
