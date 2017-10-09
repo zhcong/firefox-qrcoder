@@ -1,5 +1,5 @@
 ﻿function check(table_id,data,tab){
-	if(tab.url.indexOf("addons.mozilla.org") >= 0){
+	if(tab.url.indexOf("addons.mozilla.org") >= 0 || tab.url.indexOf("about:")==0){
 		chrome.pageAction.hide(table_id);
 	}else{
 		chrome.pageAction.show(table_id);
