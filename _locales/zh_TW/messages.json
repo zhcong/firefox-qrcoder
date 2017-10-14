@@ -1,0 +1,11 @@
+{
+	"menu_text":{"message":"生成選中文字的二維條碼","description": "menu_text"},
+	"menu_image":{"message":"生成圖片地址的二維條碼","description": "menu_image"},
+	"menu_link":{"message":"生成選中鏈接的二維條碼","description": "menu_link"},
+	"menu_address":{"message":"生成頁面地址的二維條碼","description": "menu_address"},
+	"name":{"message":"二維條碼助手","description": "Extension Name"},
+	"description": {"message":"生成頁面地址、圖片地址以及鏈接地址的二維條碼","description": "Extension description"},
+	"alert": {"message":"二維條碼","description": "Extension alert"},
+	"show_error": {"message":"這不是標準網頁無法顯示二維條碼！","description": "if cant show immage"},
+	"show_error_title": {"message":"顯示二維條碼錯誤","description": "if cant show immage"}
+}

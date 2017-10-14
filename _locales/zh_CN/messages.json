@@ -5,5 +5,7 @@
 	"menu_address":{"message":"生成页面地址的二维码","description": "menu_address"},
 	"name":{"message":"二维码助手","description": "Extension Name"},
 	"description": {"message":"生成页面地址、图片地址以及链接地址的二维码","description": "Extension description"},
-	"alert": {"message":"二维码","description": "Extension alert"}
+	"alert": {"message":"二维码","description": "Extension alert"},
+	"show_error": {"message":"这不是标准网页无法显示二维码！","description": "if cant show immage"},
+	"show_error_title": {"message":"显示二维码错误","description": "if cant show immage"}
 }

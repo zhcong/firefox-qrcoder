@@ -1,0 +1,11 @@
+{
+	"menu_text":{"message":"Generates QR code from the selected text","description": "menu_text"},
+	"menu_image":{"message":"Generates QR code from the selected image's link","description": "menu_image"},
+	"menu_link":{"message":"Generates QR code from the selected link","description": "menu_link"},
+	"menu_address":{"message":"Generates QR code from the address","description": "menu_address"},
+	"name":{"message":"FFQRcoder","description": "Extension Name"},
+	"description": {"message":"Generates QR code from the selected text, image's link, link and address","description": "Extension description"},
+	"alert": {"message":"QR code","description": "Extension alert"},
+	"show_error": {"message":"Not a normal page for showing QR code!","description": "if cant show immage"},
+	"show_error_title": {"message":"Show QR code error","description": "if cant show immage"}
+}
