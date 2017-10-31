@@ -5,79 +5,49 @@ QRRSBlock.getRSBlocks=function(typeNumber,errorCorrectLevel){var rsBlock=QRRSBlo
 };return Drawing})():(function(){function _onMakeImage(){this._elImage.src=this._elCanvas.toDataURL("image/png");this._elImage.style.display="block";this._elCanvas.style.display="none"}if(this._android&&this._android<=2.1){var factor=1/window.devicePixelRatio;var drawImage=CanvasRenderingContext2D.prototype.drawImage;CanvasRenderingContext2D.prototype.drawImage=function(image,sx,sy,sw,sh,dx,dy,dw,dh){if(("nodeName" in image)&&/img/i.test(image.nodeName)){for(var i=arguments.length-1;i>=1;i--){arguments[i]=arguments[i]*factor}}else{if(typeof dw=="undefined"){arguments[1]*=factor;arguments[2]*=factor;arguments[3]*=factor;arguments[4]*=factor}}drawImage.apply(this,arguments)}}function _safeSetDataURI(fSuccess,fFail){var self=this;self._fFail=fFail;self._fSuccess=fSuccess;if(self._bSupportDataURI===null){var el=document.createElement("img");var fOnError=function(){self._bSupportDataURI=false;if(self._fFail){self._fFail.call(self)}};var fOnSuccess=function(){self._bSupportDataURI=true;if(self._fSuccess){self._fSuccess.call(self)}};el.onabort=fOnError;el.onerror=fOnError;el.onload=fOnSuccess;el.src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";return}else{if(self._bSupportDataURI===true&&self._fSuccess){self._fSuccess.call(self)}else{if(self._bSupportDataURI===false&&self._fFail){self._fFail.call(self)}}}}var Drawing=function(el,htOption){this._bIsPainted=false;this._android=_getAndroid();this._htOption=htOption;this._elCanvas=document.createElement("canvas");this._elCanvas.width=htOption.width;this._elCanvas.height=htOption.height;el.appendChild(this._elCanvas);this._el=el;this._oContext=this._elCanvas.getContext("2d");this._bIsPainted=false;this._elImage=document.createElement("img");this._elImage.alt="Scan me!";this._elImage.style.display="none";this._el.appendChild(this._elImage);this._bSupportDataURI=null};Drawing.prototype.draw=function(oQRCode){var _elImage=this._elImage;var _oContext=this._oContext;var _htOption=this._htOption;var nCount=oQRCode.getModuleCount();var nWidth=_htOption.width/nCount;var nHeight=_htOption.height/nCount;var nRoundedWidth=Math.round(nWidth);var nRoundedHeight=Math.round(nHeight);_elImage.style.display="none";this.clear();for(var row=0;row<nCount;row++){for(var col=0;col<nCount;col++){var bIsDark=oQRCode.isDark(row,col);var nLeft=col*nWidth;var nTop=row*nHeight;_oContext.strokeStyle=bIsDark?_htOption.colorDark:_htOption.colorLight;_oContext.lineWidth=1;_oContext.fillStyle=bIsDark?_htOption.colorDark:_htOption.colorLight;_oContext.fillRect(nLeft,nTop,nWidth,nHeight);_oContext.strokeRect(Math.floor(nLeft)+0.5,Math.floor(nTop)+0.5,nRoundedWidth,nRoundedHeight);_oContext.strokeRect(Math.ceil(nLeft)-0.5,Math.ceil(nTop)-0.5,nRoundedWidth,nRoundedHeight)}}this._bIsPainted=true};Drawing.prototype.makeImage=function(){if(this._bIsPainted){_safeSetDataURI.call(this,_onMakeImage)}};Drawing.prototype.isPainted=function(){return this._bIsPainted};Drawing.prototype.clear=function(){this._oContext.clearRect(0,0,this._elCanvas.width,this._elCanvas.height);this._bIsPainted=false};Drawing.prototype.round=function(nNumber){if(!nNumber){return nNumber}return Math.floor(nNumber*1000)/1000};return Drawing})();function _getTypeNumber(sText,nCorrectLevel){var nType=1;var length=_getUTF8Length(sText);for(var i=0,len=QRCodeLimitLength.length;i<=len;i++){var nLimit=0;switch(nCorrectLevel){case QRErrorCorrectLevel.L:nLimit=QRCodeLimitLength[i][0];break;case QRErrorCorrectLevel.M:nLimit=QRCodeLimitLength[i][1];break;case QRErrorCorrectLevel.Q:nLimit=QRCodeLimitLength[i][2];break;case QRErrorCorrectLevel.H:nLimit=QRCodeLimitLength[i][3];break}if(length<=nLimit){break}else{nType++}}if(nType>QRCodeLimitLength.length){throw new Error("Too long data")}return nType}function _getUTF8Length(sText){var replacedText=encodeURI(sText).toString().replace(/\%[0-9a-fA-F]{2}/g,"a");return replacedText.length+(replacedText.length!=sText?3:0)}QRCode=function(el,vOption){this._htOption={width:256,height:256,typeNumber:4,colorDark:"#000000",colorLight:"#ffffff",correctLevel:QRErrorCorrectLevel.H};if(typeof vOption==="string"){vOption={text:vOption}}if(vOption){for(var i in vOption){this._htOption[i]=vOption[i]}}if(typeof el=="string"){el=document.getElementById(el)}if(this._htOption.useSVG){Drawing=svgDrawer}this._android=_getAndroid();this._el=el;this._oQRCode=null;this._oDrawing=new Drawing(this._el,this._htOption);if(this._htOption.text){this.makeCode(this._htOption.text)}};QRCode.prototype.makeCode=function(sText){this._oQRCode=new QRCodeModel(-1,this._htOption.correctLevel);this._oQRCode.addData(sText);this._oQRCode.make();this._oDrawing.draw(this._oQRCode);this.makeImage()};QRCode.prototype.makeImage=function(){if(typeof this._oDrawing.makeImage=="function"&&(!this._android||this._android>=3)){this._oDrawing.makeImage()}};QRCode.prototype.clear=function(){this._oDrawing.clear()};QRCode.CorrectLevel=QRErrorCorrectLevel;if(typeof define==="function"){define(function(){return QRCode
 })}else{if(typeof exports!=="undefined"){module.exports=QRCode}else{this.QRCode=QRCode}}}());
 
-function show_html(qr_text){
-	if(document.getElementById('qrcode_background')!=null) qr_close();
-	var background_id = document.createElement('DIV');
-	background_id.id='qrcode_background';
+if(document.getElementById('qrcode_background')!=null) qr_close();
+var background_id = document.createElement('DIV');
+background_id.id='qrcode_background';
 
-	var background_panel_id = document.createElement('DIV');
-	background_panel_id.className='qrcode_background';
-	background_panel_id.onclick=qr_close;
-	var qrcode_panel = document.createElement('DIV');
-	qrcode_panel.id='qrcode_panel';
-	qrcode_panel.className='qrcode_panel';
-	var qrcode_image = document.createElement('DIV');
-	qrcode_image.id='qrcode_image';
-	qrcode_image.className='qrcode_image';
-	var qrcode_text = document.createElement('DIV');
-	qrcode_text.className='qrcode_text';
-	var qrcode_text_p = document.createElement('P');
-	qrcode_text_p.innerHTML = qr_text;
-	var qrcode_close = document.createElement('DIV');
-	qrcode_close.className='qrcode_close';
-	var qrcode_close_button = document.createElement('DIV');
-	qrcode_close_button.className='qrcode_close_button';
-	qrcode_close_button.onclick=qr_close;
-	var qrcode_close_button_img = document.createElement('img');
-	qrcode_close_button_img.src = chrome.extension.getURL('images/close.svg');
-	qrcode_close_button_img.style = 'width:30px;height:30px;'
+var background_panel_id = document.createElement('DIV');
+background_panel_id.className='qrcode_background';
+background_panel_id.onclick=qr_close;
+var qrcode_panel = document.createElement('DIV');
+qrcode_panel.id='qrcode_panel';
+qrcode_panel.className='qrcode_panel';
+var qrcode_image = document.createElement('DIV');
+qrcode_image.id='qrcode_image';
+qrcode_image.className='qrcode_image';
+var qrcode_text = document.createElement('DIV');
+qrcode_text.className='qrcode_text';
+var qrcode_text_p = document.createElement('P');
+qrcode_text_p.innerHTML = qr_text;
+var qrcode_close = document.createElement('DIV');
+qrcode_close.className='qrcode_close';
+var qrcode_close_button = document.createElement('DIV');
+qrcode_close_button.className='qrcode_close_button';
+qrcode_close_button.onclick=qr_close;
+var qrcode_close_button_img = document.createElement('img');
+qrcode_close_button_img.src = chrome.extension.getURL('images/close.svg');
+qrcode_close_button_img.style = 'width:30px;height:30px;'
 
-	qrcode_close_button.appendChild(qrcode_close_button_img);
-	qrcode_close.appendChild(qrcode_close_button);
-	qrcode_text.appendChild(qrcode_text_p);
-	qrcode_panel.appendChild(qrcode_image);
-	qrcode_panel.appendChild(qrcode_text);
-	qrcode_panel.appendChild(qrcode_close);
-	background_id.appendChild(background_panel_id);
-	background_id.appendChild(qrcode_panel);
-	document.body.appendChild(background_id);
+qrcode_close_button.appendChild(qrcode_close_button_img);
+qrcode_close.appendChild(qrcode_close_button);
+qrcode_text.appendChild(qrcode_text_p);
+qrcode_panel.appendChild(qrcode_image);
+qrcode_panel.appendChild(qrcode_text);
+qrcode_panel.appendChild(qrcode_close);
+background_id.appendChild(background_panel_id);
+background_id.appendChild(qrcode_panel);
+document.body.appendChild(background_id);
 
+document.getElementById('qrcode_panel').style.left=(window.screen.availWidth-300)/2+'px';
+document.getElementById('qrcode_panel').style.top=(window.screen.availHeight-400)/3+'px';
+window.onresize = function(){
 	document.getElementById('qrcode_panel').style.left=(window.screen.availWidth-300)/2+'px';
 	document.getElementById('qrcode_panel').style.top=(window.screen.availHeight-400)/3+'px';
-	window.onresize = function(){
-		document.getElementById('qrcode_panel').style.left=(window.screen.availWidth-300)/2+'px';
-		document.getElementById('qrcode_panel').style.top=(window.screen.availHeight-400)/3+'px';
-	}
-	new QRCode('qrcode_image', {text: qr_text,width : 256,height : 256});
 }
-
-function show_popup(qr_text){
-	if(document.getElementById('qrcode_background')!=null) qr_close();
-	var background_id = document.createElement('DIV');
-	background_id.id='qrcode_background';
-	var qrcode_panel = document.createElement('DIV');
-	qrcode_panel.id='qrcode_panel';
-	qrcode_panel.className='qrcode_panel';
-	var qrcode_image = document.createElement('DIV');
-	qrcode_image.id='qrcode_image';
-	qrcode_image.className='qrcode_image';
-	var qrcode_text = document.createElement('DIV');
-	qrcode_text.className='qrcode_text';
-	var qrcode_text_p = document.createElement('P');
-	qrcode_text_p.innerHTML = qr_text;
-
-	background_id.style = 'width:170px;height:200px;'
-
-	qrcode_panel.appendChild(qrcode_image);
-	background_id.appendChild(qrcode_panel);
-	document.body.appendChild(background_id);
-
-	document.getElementById('qrcode_panel').style.left='0px';
-	document.getElementById('qrcode_panel').style.top='0px';
-	new QRCode('qrcode_image', {text: qr_text,width : 128,height : 128});
-	console.log(document.body);
-}
-
+new QRCode('qrcode_image', {text: qr_text,width : 256,height : 256});
 
 function qr_close(){
 	document.getElementById('qrcode_background').parentNode.removeChild(document.getElementById('qrcode_background'));

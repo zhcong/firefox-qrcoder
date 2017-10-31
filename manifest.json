@@ -26,10 +26,11 @@
 	"homepage_url":"https://github.com/zhcong/firefox-qrcoder",
 	"permissions" : [
 		"tabs",
-		"activeTab",
 		"notifications",
 		"contextMenus",
-		"<all_urls>"
+		"http://*/",
+		"https://*/",
+		"ftp://*/"
 	],
 	"web_accessible_resources": [
 		"images/close.svg"
