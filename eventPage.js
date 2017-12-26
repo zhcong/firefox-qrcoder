@@ -7,8 +7,8 @@
 }
 function draw(str){
 	browser.tabs.insertCSS(null,{file:'qrcoder_css.css'});
-	browser.tabs.executeScript(null,{file: "codePanel.js"});
 	browser.tabs.executeScript(null,{code: "var qr_text=\'"+str+"\';"});
+	browser.tabs.executeScript(null,{file: "codePanel.js"});
 }
 function chkExecOK(successFunc,errorFunc){
 	var executing = browser.tabs.executeScript(null,{code: "var test=\'\';"});
@@ -51,7 +51,7 @@ browser.contextMenus.create({'title':browser.i18n.getMessage('menu_text'),'conte
 			});
 			notifications.show();
 	});
-	draw(info.pageUrl);
+	draw(info.selectionText);
 }});
 browser.contextMenus.create({'title':browser.i18n.getMessage('menu_image'),'contexts':['image'],'onclick':function(info,tab){
 	chkExecOK(null,function(){
