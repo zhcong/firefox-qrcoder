@@ -7,5 +7,9 @@
 	"description": {"message":"生成页面地址、图片地址以及链接地址的二维码","description": "Extension description"},
 	"alert": {"message":"二维码","description": "Extension alert"},
 	"show_error": {"message":"这不是标准网页无法显示二维码！","description": "if cant show immage"},
-	"show_error_title": {"message":"显示二维码错误","description": "if cant show immage"}
+	"show_error_title": {"message":"显示二维码错误","description": "if cant show immage"},
+	"show_label_text": {"message":"显示位置","description": "options.html,show_label"},
+	"page_text": {"message":"页面","description": "options.html,page"},
+	"bar_text": {"message":"地址栏","description": "options.html,bar"},
+	"option_alert": {"message":"设置成功，请重新打开所有标签页","description": "options.html,bar"}
 }

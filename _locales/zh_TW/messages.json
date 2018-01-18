@@ -7,5 +7,9 @@
 	"description": {"message":"生成頁面地址、圖片地址以及鏈接地址的二維條碼","description": "Extension description"},
 	"alert": {"message":"二維條碼","description": "Extension alert"},
 	"show_error": {"message":"這不是標準網頁無法顯示二維條碼！","description": "if cant show immage"},
-	"show_error_title": {"message":"顯示二維條碼錯誤","description": "if cant show immage"}
+	"show_error_title": {"message":"顯示二維條碼錯誤","description": "if cant show immage"},
+	"show_label_text": {"message":"顯示位置","description": "options.html,show_label"},
+	"page_text": {"message":"頁面","description": "options.html,page"},
+	"bar_text": {"message":"地址欄","description": "options.html,bar"},
+	"option_alert": {"message":"設置成功，請重新打開所有標籤頁","description": "options.html,bar"}
 }

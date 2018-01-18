@@ -1,7 +1,7 @@
 ﻿{
 	"manifest_version": 2,
 	"name": "__MSG_name__",
-	"version": "1.8",
+	"version": "2.0",
 
 	"description": "__MSG_description__",
 	"icons": { 
@@ -30,10 +30,16 @@
 		"contextMenus",
 		"http://*/",
 		"https://*/",
-		"ftp://*/"
+		"ftp://*/",
+		"storage",
+		"menus"
 	],
 	"web_accessible_resources": [
 		"images/close.svg"
 	],
-	"default_locale": "en-US"
+	"default_locale": "en-US",
+	"options_ui": {
+		"page": "options/options.html",
+		"browser_style": true
+	}
 }

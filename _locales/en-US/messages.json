@@ -7,5 +7,9 @@
 	"description": {"message":"Generates QR code from the selected text, image's link, link and address","description": "Extension description"},
 	"alert": {"message":"QR code","description": "Extension alert"},
 	"show_error": {"message":"Not a normal page for showing QR code!","description": "if cant show immage"},
-	"show_error_title": {"message":"Show QR code error","description": "if cant show immage"}
+	"show_error_title": {"message":"Show QR code error","description": "if cant show immage"},
+	"show_label_text": {"message":"position for displayed","description": "options.html,show_label"},
+	"page_text": {"message":"web page","description": "options.html,page"},
+	"bar_text": {"message":"address bar","description": "options.html,bar"},
+	"option_alert": {"message":"set up successfully, please reopen all the web page","description": "options.html,bar"}
 }
